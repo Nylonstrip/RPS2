@@ -2,7 +2,12 @@ let computerChoice = "none";
 let choiceH = "none";
 let humanChoice = "none"
 let cPoints = 0;
+let compuPoints = 0;
 let hPoints = 0;
+let humanPoints = 0;
+let dPoints = 0;
+let drawPoints = 0;
+let games = 0;
 
 function getComputerChoice(number) {
     let choiceN = Math.floor(Math.random() * number);
@@ -35,57 +40,76 @@ function getHumanChoice() {
     }
 }
 
+function gameResult() {
+    if (drawPoints != dPoints) {
+        drawPoints = dPoints;
+        alert("Draw!!!");
+    }
+    else if (humanPoints != hPoints) {
+        humanPoints = hPoints;
+        alert("You win!");
+    }
+    else if (compuPoints != cPoints) {
+        compuPoints = cPoints;
+        alert("You Lose...");
+    }
+    else {
+        alert("Pick a actual answer next time...")
+    }
+    alert(`Computer: ${cPoints} | Human: ${hPoints} | Draws: ${dPoints}`)
+}
 
-function showDown() {
-    while (cPoints < 3 && hPoints < 3) {
+function playRound() {
     getComputerChoice(3);
     getHumanChoice();
-    alert(`The human picked ${choiceH}`);
-    alert(`The computer picked ${computerChoice}`);
+    alert(`You picked ${choiceH}`)
+    alert(`The computer picked ${computerChoice}`)
     if (computerChoice === choiceH) {
-        alert("Draw!");
-    } 
+        ++dPoints
+    }
     else if (choiceH === "Scissors") {
         if (computerChoice === "Paper") {
             ++hPoints;
-            alert("You Win!");
         }
         else {
             ++cPoints;
-            alert("You Lose!");
         }
     }
     else if (choiceH === "Rock") {
         if (computerChoice === "Scissors") {
             ++hPoints;
-            alert("You Win!");
         }
         else {
             ++cPoints;
-            alert("You Lose!");
         }
     }
     else if (choiceH === "Paper") {
         if (computerChoice === "Rock") {
             ++hPoints;
-            alert("You Win!");
         }
         else {
             ++cPoints;
-            alert("You Lose!");
         }
     }
-    else {
-        alert("Why did you pick that?");
-    }
-    alert(`Computer: ${cPoints}| Human: ${hPoints}`);
+    ++games;
+    gameResult();
 }
-    if (cPoints === 3) {
-        alert("Computer whooped yo butt boi");
+
+
+
+function playGame() {
+    while (games < 5) {
+        playRound();
+    }
+    if (cPoints > hPoints) {
+        alert("You lost...try again?");
+    }
+    else if (hPoints > cPoints) {
+        alert("You won!! Way to show that bot~");
     }
     else {
-        alert("Congrats i guess, you really put in the work...i suppose");
+        alert("You're tied...what a close match.")
     }
 }
 
-showDown();
+playGame();
