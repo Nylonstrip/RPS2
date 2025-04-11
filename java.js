@@ -39,9 +39,9 @@ function getHumanChoice() {
 function showDown() {
     while (cPoints < 3 && hPoints < 3) {
     getComputerChoice(3);
-    alert(`The computer picked ${computerChoice}`);
     getHumanChoice();
     alert(`The human picked ${choiceH}`);
+    alert(`The computer picked ${computerChoice}`);
     if (computerChoice === choiceH) {
         alert("Draw!");
     } 
