@@ -1,0 +1,27 @@
+.scorestyle {
+    font-size: 30px;
+    color: aliceblue;
+    
+}
+
+#counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#container {
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+    gap: 10px;
+}
+
+button {
+    border-radius: 10px;
+    background-color: brown;
+    font-size: 28px;
+    padding: 7px;
+    width: 130px;
+}
