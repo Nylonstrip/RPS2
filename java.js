@@ -8,6 +8,7 @@ let humanPoints = 0;
 let dPoints = 0;
 let drawPoints = 0;
 let games = 0;
+let currentScore = 0;
 
 function getComputerChoice(number) {
     let choiceN = Math.floor(Math.random() * number);
@@ -61,7 +62,6 @@ function gameResult() {
 
 function playRound() {
     getComputerChoice(3);
-    getHumanChoice();
     alert(`You picked ${choiceH}`)
     alert(`The computer picked ${computerChoice}`)
     if (computerChoice === choiceH) {
@@ -92,12 +92,13 @@ function playRound() {
         }
     }
     ++games;
+    score.textContent = `Player ${hPoints} || Computer ${cPoints} || Draw ${dPoints}`;
     gameResult();
 }
 
 
 
-function playGame() {
+/*function playGame() {
     while (games < 5) {
         playRound();
     }
@@ -110,6 +111,44 @@ function playGame() {
     else {
         alert("You're tied...what a close match.")
     }
+}*/
+
+
+
+
+const buttons = document.querySelectorAll("button");
+
+let container = document.getElementById("#container");
+
+
+
+function rpsselection(e) {
+    let target = e.target;
+    
+    switch(target.id) {
+        case 'rock':
+            choiceH = "Rock";
+            break;
+        case 'paper':
+            choiceH = "Paper";
+            break;
+        case 'scissors':
+            choiceH = "Scissors";
+            break;
+    }
+    playRound();
 }
 
-playGame();
+
+buttons.forEach((button) => {
+    button.addEventListener("click", rpsselection);
+    })
+
+const counter = document.querySelector("#counter");
+let body = document.querySelector("body")
+const score = document.createElement("div");
+score.classList.add("scorestyle");
+score.textContent = `Do you wanna play a game?`;
+counter.appendChild(score);
+body.style.background = "red";
+counter.style.cssText = "background: red";
